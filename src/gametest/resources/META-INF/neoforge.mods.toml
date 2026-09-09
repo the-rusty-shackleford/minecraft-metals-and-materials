@@ -1,0 +1,16 @@
+modLoader="javafml"
+loaderVersion="[1,)"
+license="AGPL-3.0-or-later"
+
+[[mods]]
+modId="metalsandmaterials_gametest"
+version="1.0.0"
+displayName="Metals and Materials gametests"
+description='''The gametests, as a mod of their own; never shipped.'''
+
+[[dependencies.metalsandmaterials_gametest]]
+    modId="metalsandmaterials"
+    type="required"
+    versionRange="[1.0,2.0)"
+    ordering="AFTER"
+    side="BOTH"

@@ -1,0 +1,7 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "steel_ingot",
+  "ingredients": [ { "tag": "c:storage_blocks/steel" } ],
+  "result": { "id": "metalsandmaterials:steel_ingot", "count": 9 }
+}

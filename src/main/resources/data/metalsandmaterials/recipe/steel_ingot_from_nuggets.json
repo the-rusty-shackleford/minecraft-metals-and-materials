@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "steel_ingot",
+  "pattern": [ "###", "###", "###" ],
+  "key": { "#": { "tag": "c:nuggets/steel" } },
+  "result": { "id": "metalsandmaterials:steel_ingot" }
+}

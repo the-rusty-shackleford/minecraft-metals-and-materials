@@ -1,0 +1,150 @@
+plugins {
+    id 'java-library'
+    id 'maven-publish'
+    id 'net.neoforged.moddev' version '2.0.144'
+    id 'idea'
+}
+
+version = mod_version
+group = mod_group_id
+
+base {
+    archivesName = mod_id
+}
+
+// Mojang ships Java 21 to end users in 1.21.1, so mods must target Java 21.
+java.toolchain.languageVersion = JavaLanguageVersion.of(21)
+
+repositories {
+    mavenCentral()
+}
+
+// Two layers: `main` (the registrations and their data) and `gametest` (a
+// real server exercising them from outside, as a pack would). There is no
+// `domain` set here: this mod decides nothing -- it declares three items,
+// their tags and five recipes -- so there is nothing pure to test with plain
+// JUnit. The recipes and tags are asserted on the gametest server instead.
+sourceSets {
+    gametest
+}
+
+// In a dev run SharedConstants.IS_RUNNING_IN_IDE is true, so the structure
+// template manager reads gametest templates from <cwd>/gameteststructures/
+// rather than from a resource pack.
+var copyGameTestStructures = tasks.register("copyGameTestStructures", Copy) {
+    from "devtools/gameteststructures"
+    into "run/gameteststructures"
+}
+
+neoForge {
+    version = project.neo_version
+
+    parchment {
+        mappingsVersion = project.parchment_mappings_version
+        minecraftVersion = project.parchment_minecraft_version
+    }
+
+    runs {
+        client {
+            client()
+        }
+        server {
+            server()
+            programArgument '--nogui'
+        }
+        // A dedicated server with NeoForge's gametest framework enabled.
+        gameTestServer {
+            type = "gameTestServer"
+            sourceSet = sourceSets.gametest
+            systemProperty 'neoforge.enabledGameTestNamespaces', mod_id
+            taskBefore copyGameTestStructures
+        }
+        configureEach {
+            logLevel = org.slf4j.event.Level.DEBUG
+        }
+    }
+
+    mods {
+        "${mod_id}" {
+            sourceSet(sourceSets.main)
+        }
+        "${mod_id}_gametest" {
+            sourceSet(sourceSets.gametest)
+        }
+    }
+
+    addModdingDependenciesTo(sourceSets.gametest)
+}
+
+// The gametest mod is for the gametest run only.
+neoForge.runs.matching { it.name != 'gameTestServer' }.configureEach {
+    loadedMods = neoForge.mods.matching { it.name != "${mod_id}_gametest" }
+}
+
+dependencies {
+    gametestImplementation sourceSets.main.output
+}
+
+// The gametest server's exit code is the number of failed *required* tests,
+// which is also zero when no test ran at all. The assertion is the
+// framework's own summary line in the log, and the task fails without it.
+tasks.named('runGameTestServer') { task ->
+    def logFile = layout.projectDirectory.file('run/logs/latest.log').asFile
+    task.doLast {
+        def text = logFile.exists() ? logFile.text : ''
+        if (text =~ /Missing or unsupported mandatory|Mod loading has failed/) {
+            throw new GradleException("gametest: the loader refused a mod; see ${logFile}")
+        }
+        def passed = (text =~ /All (\d+) required tests passed/)
+        if (!passed.find()) {
+            throw new GradleException("gametest: no 'required tests passed' line in ${logFile}")
+        }
+        task.logger.lifecycle("gametest: all ${passed.group(1)} required tests passed")
+    }
+}
+if (!project.hasProperty('skipGameTests')) {
+    tasks.named('check') {
+        dependsOn 'runGameTestServer'
+    }
+}
+
+// Consumers compile against and nest this artifact Jar-in-Jar. Until a real
+// Maven repository exists, `./gradlew publishToMavenLocal` is how it is
+// shared, the same path a third-party author would use against a real one.
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+        }
+    }
+}
+
+var generateModMetadata = tasks.register("generateModMetadata", ProcessResources) {
+    var replaceProperties = [
+            minecraft_version      : minecraft_version,
+            minecraft_version_range: minecraft_version_range,
+            neo_version            : neo_version,
+            loader_version_range   : loader_version_range,
+            mod_id                 : mod_id,
+            mod_name               : mod_name,
+            mod_license            : mod_license,
+            mod_version            : mod_version,
+    ]
+    inputs.properties replaceProperties
+    expand replaceProperties
+    from "src/main/templates"
+    into "build/generated/sources/modMetadata"
+}
+sourceSets.main.resources.srcDir generateModMetadata
+neoForge.ideSyncTask generateModMetadata
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+}
+
+idea {
+    module {
+        downloadSources = true
+        downloadJavadoc = true
+    }
+}

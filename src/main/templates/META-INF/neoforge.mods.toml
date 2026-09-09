@@ -1,0 +1,31 @@
+modLoader="javafml"
+loaderVersion="${loader_version_range}"
+license="${mod_license}"
+issueTrackerURL="https://github.com/the-rusty-shackleford/minecraft-metals-and-materials/issues"
+
+[[mods]]
+modId="${mod_id}"
+version="${mod_version}"
+displayName="${mod_name}"
+authors="Rusty Shackleford, nfx"
+description='''
+The pack's one steel: an ingot, a nugget and a block, tagged the common way
+(c:ingots/steel, c:nuggets/steel, c:storage_blocks/steel) so any mod's recipe
+can take it. Three iron and a piece of coal make three steel.
+
+Other mods nest this jar inside their own; the loader keeps one copy.
+'''
+
+[[dependencies.${mod_id}]]
+    modId="neoforge"
+    type="required"
+    versionRange="[${neo_version},)"
+    ordering="NONE"
+    side="BOTH"
+
+[[dependencies.${mod_id}]]
+    modId="minecraft"
+    type="required"
+    versionRange="${minecraft_version_range}"
+    ordering="NONE"
+    side="BOTH"
