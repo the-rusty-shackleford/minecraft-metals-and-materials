@@ -12,6 +12,10 @@ common way so any mod's recipe can take it without naming this mod.
 They sit right after iron's ingot, nugget and block in the Ingredients and Building Blocks
 tabs.
 
+The held 1.0.1 artwork gives the ingot and nugget distinct bevelled faces and a cool
+steel palette at the existing 16-pixel resolution. The block and crafting behavior
+are unchanged. The generator is deterministic and passes `mypy --strict`.
+
 ## For other mods
 
 Take `#c:ingots/steel` (or `#c:nuggets/steel`, `#c:storage_blocks/steel`) in recipes and

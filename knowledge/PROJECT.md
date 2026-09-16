@@ -38,3 +38,7 @@ mod.
 
 Ships as 1.0.0 (2026-09-09) with Ranged Weapons Mod 2.3.0 in one pack update. Later metals
 (if any) join here rather than in the mod that first needs them.
+
+2026-09-16 presentation polish: Held 1.0.1: D-0002 redraws the ingot/nugget with bevelled faces and strictly types
+the deterministic generator. Seven real-server checks still pass; recipes, tags,
+block appearance and IDs are unchanged. Release remains held.

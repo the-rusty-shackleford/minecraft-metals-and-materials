@@ -13,3 +13,4 @@ tags: [index]
 | Id | Topic |
 |----|-------|
 | D-0001 | One materials mod nested by its consumers; the gun mod aliases its old steel id |
+| D-0002 | Steel icons show separate bevelled faces at inventory scale |
