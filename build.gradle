@@ -108,7 +108,7 @@ if (!project.hasProperty('skipGameTests')) {
     }
 }
 
-// Consumers compile against and nest this artifact Jar-in-Jar. Until a real
+// Consumers compile against this separately installed artifact. Until a real
 // Maven repository exists, `./gradlew publishToMavenLocal` is how it is
 // shared, the same path a third-party author would use against a real one.
 publishing {

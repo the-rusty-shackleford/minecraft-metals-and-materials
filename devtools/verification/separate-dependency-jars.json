@@ -1,0 +1,20 @@
+{
+  "vanillawheels-1.7.2.jar": [
+    "vanillawheels-1.7.2.jar!/META-INF/jarjar/luminance-1.1.0.jar"
+  ],
+  "rangedweaponsmod-2.4.1.jar": [
+    "rangedweaponsmod-2.4.1.jar!/META-INF/jarjar/rangedweapons-1.7.0.jar"
+  ],
+  "trailblazer-1.7.1.jar": [
+    "trailblazer-1.7.1.jar!/META-INF/jarjar/vanillawheels-1.7.2.jar",
+    "trailblazer-1.7.1.jar!/META-INF/jarjar/vanillawheels-1.7.2.jar!/META-INF/jarjar/luminance-1.1.0.jar"
+  ],
+  "trailer-2.3.1.jar": [
+    "trailer-2.3.1.jar!/META-INF/jarjar/vanillawheels-1.7.2.jar",
+    "trailer-2.3.1.jar!/META-INF/jarjar/vanillawheels-1.7.2.jar!/META-INF/jarjar/luminance-1.1.0.jar"
+  ],
+  "farmpickup-1.3.1.jar": [
+    "farmpickup-1.3.1.jar!/META-INF/jarjar/vanillawheels-1.7.2.jar",
+    "farmpickup-1.3.1.jar!/META-INF/jarjar/vanillawheels-1.7.2.jar!/META-INF/jarjar/luminance-1.1.0.jar"
+  ]
+}

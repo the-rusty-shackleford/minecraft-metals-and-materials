@@ -21,8 +21,9 @@ are unchanged. The generator is deterministic and passes `mypy --strict`.
 ## For other mods
 
 Take `#c:ingots/steel` (or `#c:nuggets/steel`, `#c:storage_blocks/steel`) in recipes and
-nest this jar Jar-in-Jar with a range such as `[1.0,2.0)`; the loader keeps one copy across
-every mod that carries it. Until a Maven repository exists, `./gradlew publishToMavenLocal`
+declare this mod as a required dependency with a range such as `[1.0,2.0)`.
+Install its jar separately on the client and server; do not bundle copies inside consumers.
+Mod Hub supplies the shared version in our pack. Until a Maven repository exists, `./gradlew publishToMavenLocal`
 publishes `com.chunkworks.metalsandmaterials:metalsandmaterials` for consumers to build
 against. The Ranged Weapons Mod is the first consumer: its steel moved here in its 2.3.0,
 and it aliases its old item id to this one so nobody's ingots vanished.

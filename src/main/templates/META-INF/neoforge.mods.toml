@@ -13,7 +13,7 @@ The pack's one steel: an ingot, a nugget and a block, tagged the common way
 (c:ingots/steel, c:nuggets/steel, c:storage_blocks/steel) so any mod's recipe
 can take it. Three iron and a piece of coal make three steel.
 
-Other mods nest this jar inside their own; the loader keeps one copy.
+Install this mod alongside mods that require its shared materials.
 '''
 
 [[dependencies.${mod_id}]]

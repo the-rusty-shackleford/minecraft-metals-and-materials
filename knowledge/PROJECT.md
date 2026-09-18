@@ -10,13 +10,13 @@ tags: [overview]
 ## What this is
 
 A NeoForge 1.21.1 mod that is the pack's steel: an ingot, a nugget and a block, with the
-`c:` tags every recipe takes. Nested Jar-in-Jar by the mods that use steel.
+`c:` tags every recipe takes. Installed separately and required by the mods that use steel (D-0003).
 
 ## Why it exists
 
 Steel was an item of the Ranged Weapons Mod, so a second mod wanting steel (Vanilla Wheels'
 chassis and engines) would have had to depend on a gun mod or mint a second steel. One
-materials mod, nested by both, is the fix; the gun mod's recipes already took the tag.
+materials mod, required by both, is the fix; the gun mod's recipes already took the tag.
 
 ## Shape
 
@@ -84,3 +84,12 @@ selected an older nested copy despite the updated Vanilla Wheels bundle. The 1.3
 correction matches the directly installed materials jar used in full-pack testing.
 Final startup verified all four updated mod versions; world, operators and DH settings
 were preserved. This supersedes the historical release holds above.
+
+## Shared dependency packaging — 2026-09-18, unreleased
+
+D-0003 supersedes the nested packaging choice. Version 1.0.3 updates installation
+guidance in mod metadata; item IDs, assets and gameplay are unchanged. Consumers
+require a separately installed copy. Unit/server checks, recursive jar/payload audits and complete-pack startup passed; release is held.
+
+Validation: see Metals and Materials `devtools/verification/separate-dependency.md`;
+all six packaging builds and the complete-pack client/server check passed.

@@ -14,3 +14,5 @@ tags: [index]
 |----|-------|
 | D-0001 | One materials mod nested by its consumers; the gun mod aliases its old steel id |
 | D-0002 | Steel icons show separate bevelled faces at inventory scale |
+
+- [D-0003](D-0003.md): Install the shared materials mod separately; supersedes D-0001 packaging only.
