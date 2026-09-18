@@ -17,6 +17,10 @@
  */
 package com.chunkworks.metalsandmaterials;
 
+import net.neoforged.neoforge.registries.DeferredHolder;
+import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.network.chat.Component;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
@@ -37,6 +41,7 @@ public final class ModContent {
 
     private static final DeferredRegister.Blocks BLOCKS = DeferredRegister.createBlocks(MetalsAndMaterials.MOD_ID);
     private static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(MetalsAndMaterials.MOD_ID);
+    private static final DeferredRegister<CreativeModeTab> TABS = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, MetalsAndMaterials.MOD_ID);
 
     /** Iron with a little carbon: what receivers, engines and chassis are made of. */
     public static final DeferredItem<Item> STEEL_INGOT = ITEMS.registerSimpleItem("steel_ingot");
@@ -49,7 +54,19 @@ public final class ModContent {
 
     /** effects: registers the blocks and items on {@code modBus} */
     public static void register(IEventBus modBus) {
+        TABS.register(modBus);
         BLOCKS.register(modBus);
         ITEMS.register(modBus);
     }
+
+    /** Every usable Metals and Materials item in its own Creative inventory tab. */
+    public static final DeferredHolder<CreativeModeTab, CreativeModeTab> CREATIVE_TAB = TABS.register("main", () -> CreativeModeTab.builder()
+            .title(Component.translatable("itemGroup.metalsandmaterials"))
+            .icon(() -> STEEL_INGOT.get().getDefaultInstance())
+            .displayItems((parameters, output) -> {
+                output.accept(STEEL_INGOT.get());
+                output.accept(STEEL_NUGGET.get());
+                output.accept(STEEL_BLOCK_ITEM.get());
+            })
+            .build());
 }

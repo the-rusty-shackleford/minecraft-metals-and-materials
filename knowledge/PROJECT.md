@@ -51,3 +51,14 @@ Version 1.0.1 was published on 2026-09-16 and deployed in pack 1.35.1
 after the clean release build and asset verification. The deployed server matched
 the published pack and ran at 20 TPS. This supersedes the earlier release holds
 and pending presentation/listening review recorded above.
+
+
+## Dedicated Creative tabs — 2026-09-18, unreleased
+
+Rusty requested a separate Creative inventory page for each item-adding mod, then
+explicitly chose to group all vehicles in Vanilla Wheels.
+The dedicated Metals and Materials Creative tab groups the steel ingot, nugget and
+block, alongside their existing vanilla categories and search.
+No release or deployment is authorized by this follow-up.
+Validation: 7 real-server GameTests and native full-pack Creative tab navigation/
+item pickup passed; see [evidence](../devtools/verification/creative-tab.md).

@@ -9,10 +9,12 @@ common way so any mod's recipe can take it without naming this mod.
 - **Block of Steel** -- nine ingots; back to nine. Mined with a stone pickaxe or better,
   drops itself. Tagged `c:storage_blocks/steel` as an item and as a block.
 
-They sit right after iron's ingot, nugget and block in the Ingredients and Building Blocks
-tabs.
+All three are together in the **Metals and Materials** Creative tab (unreleased
+follow-up to 1.0.1). They also sit right after iron's ingot, nugget and block in the
+Ingredients and Building Blocks tabs. See the
+[full-pack tab check](devtools/verification/creative-tab.md).
 
-The held 1.0.1 artwork gives the ingot and nugget distinct bevelled faces and a cool
+The 1.0.1 artwork gives the ingot and nugget distinct bevelled faces and a cool
 steel palette at the existing 16-pixel resolution. The block and crafting behavior
 are unchanged. The generator is deterministic and passes `mypy --strict`.
 

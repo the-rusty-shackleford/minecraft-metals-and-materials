@@ -1,5 +1,6 @@
 {
   "item.metalsandmaterials.steel_ingot": "Steel Ingot",
   "item.metalsandmaterials.steel_nugget": "Steel Nugget",
-  "block.metalsandmaterials.steel_block": "Block of Steel"
+  "block.metalsandmaterials.steel_block": "Block of Steel",
+  "itemGroup.metalsandmaterials": "Metals and Materials"
 }

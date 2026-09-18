@@ -176,6 +176,10 @@ public final class MetalsGameTests {
     @GameTest(template = "arena")
     public void steelSitsBesideIronInTheCreativeTabs(GameTestHelper helper) {
         CreativeModeTabs.tryRebuildTabContents(FeatureFlags.DEFAULT_FLAGS, true, helper.getLevel().registryAccess());
+        for (var item : List.of(ModContent.STEEL_INGOT.get(), ModContent.STEEL_NUGGET.get(), ModContent.STEEL_BLOCK_ITEM.get())) {
+            helper.assertTrue(ModContent.CREATIVE_TAB.get().getDisplayItems().stream().anyMatch(stack -> stack.is(item)),
+                    "the Metals and Materials tab contains " + item);
+        }
         assertAfter(helper, CreativeModeTabs.INGREDIENTS, Items.IRON_INGOT, ModContent.STEEL_INGOT.get());
         assertAfter(helper, CreativeModeTabs.INGREDIENTS, Items.IRON_NUGGET, ModContent.STEEL_NUGGET.get());
         assertAfter(helper, CreativeModeTabs.BUILDING_BLOCKS, Items.IRON_BLOCK, ModContent.STEEL_BLOCK_ITEM.get());
