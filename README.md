@@ -9,8 +9,8 @@ common way so any mod's recipe can take it without naming this mod.
 - **Block of Steel** -- nine ingots; back to nine. Mined with a stone pickaxe or better,
   drops itself. Tagged `c:storage_blocks/steel` as an item and as a block.
 
-All three are together in the **Metals and Materials** Creative tab (unreleased
-follow-up to 1.0.1). They also sit right after iron's ingot, nugget and block in the
+All three are together in the **Metals and Materials** Creative tab (since
+1.0.2). They also sit right after iron's ingot, nugget and block in the
 Ingredients and Building Blocks tabs. See the
 [full-pack tab check](devtools/verification/creative-tab.md).
 
