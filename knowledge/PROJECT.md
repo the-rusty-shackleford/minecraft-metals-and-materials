@@ -93,3 +93,11 @@ require a separately installed copy. Unit/server checks, recursive jar/payload a
 
 Validation: see Metals and Materials `devtools/verification/separate-dependency.md`;
 all six packaging builds and the complete-pack client/server check passed.
+
+## Release authorization — 2026-09-19
+
+Rusty explicitly requested: "Deploy it all so I can test that stuff."
+Version 1.0.3 is authorized for public source/jar publication and deployment
+in pack 1.47.0, superseding the earlier local-review and dependency-packaging holds.
+Clean release builds, exact jar checks, staged pack comparison and an empty-server
+restart gate deployment. The other vehicle mods are updated together for protocol 5.
